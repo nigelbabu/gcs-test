@@ -2,14 +2,9 @@ package e2e
 
 import (
 	"flag"
-	/*
-		"fmt"
-		"os"
-	*/
 	"testing"
 
 	"k8s.io/kubernetes/test/e2e/framework"
-	//"k8s.io/kubernetes/test/e2e/framework/viperconfig"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
