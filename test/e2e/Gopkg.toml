@@ -4,15 +4,15 @@
 
 [[constraint]]
   name = "k8s.io/api"
-  version = "kubernetes-v1.13.1"
+  version = "kubernetes-1.13.1"
 
 [[constraint]]
   name = "k8s.io/apimachinery"
-  version = "kubernetes-v1.13.1"
+  version = "kubernetes-1.13.1"
 
 [[constraint]]
   name = "k8s.io/client-go"
-  version = "kubernetes-v1.13.1"
+  version = "kubernetes-1.13.1"
 
 [[override]]
   name = "k8s.io/utils"
