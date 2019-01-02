@@ -15,30 +15,21 @@
   version = "kubernetes-1.13.1"
 
 [[override]]
-  name = "k8s.io/utils"
-  revision = "66066c83e385e385ccc3c964b44fd7dcd413d0ed"
+  name = "k8s.io/apiserver"
+  version = "kubernetes-1.13.1"
 
 [[override]]
-  name = "google.golang.org/grpc"
-  revision = "5b3c4e850e90a4cf6a20ebd46c8b32a0a3afcb9e"
+  name = "k8s.io/apiextensions-apiserver"
+  version = "kubernetes-1.13.1"
+
+[[override]]
+  name = "github.com/docker/docker"
+  version = "v17.05.0-ce"
 
 [[override]]
   name = "gopkg.in/fsnotify.v1"
   source = "https://github.com/fsnotify/fsnotify.git"
 
-[[override]]
-  name = "github.com/docker/distribution"
-  revision = "edc3ab29cdff8694dd6feb85cfeb4b5f1b38ed9c"
-
-[[override]]
-  name = "github.com/opencontainers/runc"
-  revision = "871ba2e58e24314d1fab4517a80410191ba5ad01"
-
-[[override]]
-  name = "golang.org/x/exp"
-  revision = "292a51b8d262487dab23a588950e8052d63d9113"
-
 [prune]
   go-tests = true
-  non-go = true
   unused-packages = true
