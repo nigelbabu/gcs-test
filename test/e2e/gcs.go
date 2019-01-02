@@ -1,7 +1,6 @@
 package e2e
 
 import (
-	"fmt"
 	"io/ioutil"
 	"time"
 
@@ -24,13 +23,11 @@ var _ = Describe("gcs", func() {
 
 	// filled in BeforeEach
 	var c kubernetes.Interface
-	var ns string
 
 	var outputDir string
 
 	BeforeEach(func() {
 		c = f.ClientSet
-		ns = f.Namespace.Name
 
 		var err error
 		outputDir, err = ioutil.TempDir("", "gcs")
