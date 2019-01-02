@@ -13,4 +13,5 @@ repo and live there.
 
 3. Clone this repository in the right folder in GOPATH and cd into the e2e
    folder.
-4. Run the tests with `go test`
+4. Install dependencies with `dep ensure`.
+4. Run the tests with `go test`.
