@@ -10,10 +10,10 @@ import (
 	//appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/api/core/v1"
 	storagev1 "k8s.io/api/storage/v1"
-	"k8s.io/apimachinery/pkg/api/errors"
+	//"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/util/wait"
+	//"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/kubernetes/test/e2e/framework"
 )
@@ -43,23 +43,15 @@ var _ = Describe("gcs", func() {
 	Describe("Gluster Container Service", func() {
 		It("should allow persistent storage backed by glusterfs", func() {
 
-			By("waiting for gluterfs-csi storageclass")
+			By("Checking for a gluterfs-csi StorageClass")
 			scName := "glusterfs-csi"
 			var sc *storagev1.StorageClass
-			framework.ExpectNoError(wait.PollImmediate(2*time.Second, 30*time.Second, func() (bool, error) {
-				var err error
-				sc, err = c.StorageV1().StorageClasses().Get(scName, metav1.GetOptions{})
-				if errors.IsNotFound(err) {
-					return false, nil
-				}
-				if err != nil {
-					return false, err
-				}
-				return true, nil
-			}), "waiting for glusterfs-csi storageclass")
+			var err error
+			sc, err = c.StorageV1().StorageClasses().Get(scName, metav1.GetOptions{})
 			framework.Logf("%v", sc)
+			framework.ExpectNoError(err)
 
-			By("creating a pvc")
+			By("Creating a PVC backed by glusterfs-csi")
 			pvc := &v1.PersistentVolumeClaim{
 				ObjectMeta: metav1.ObjectMeta{
 					GenerateName: "pvc-",
@@ -76,11 +68,10 @@ var _ = Describe("gcs", func() {
 					StorageClassName: &scName,
 				},
 			}
-			var err error
 			pvc, err = c.CoreV1().PersistentVolumeClaims(ns).Create(pvc)
 			framework.ExpectNoError(err)
 
-			By("waiting for pvc to have an gluster volume pv provisioned for it")
+			By("Waiting for PVC to have an gluster volume pv provisioned for it")
 			framework.ExpectNoError(framework.WaitForPersistentVolumeClaimPhase(v1.ClaimBound, c, ns, pvc.Name, framework.Poll, 1*time.Minute))
 			defer framework.ExpectNoError(framework.DeletePersistentVolumeClaim(c, pvc.Name, ns))
 		})
