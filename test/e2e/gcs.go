@@ -26,9 +26,7 @@ var _ = Describe("gcs", func() {
 	var c kubernetes.Interface
 	var ns string
 
-	var catalogNs string
 	var outputDir string
-	var templateDir string
 
 	BeforeEach(func() {
 		c = f.ClientSet
@@ -45,7 +43,6 @@ var _ = Describe("gcs", func() {
 
 	Describe("Gluster Container Service", func() {
 		It("should allow persistent storage backed by glusterfs", func() {
-			nsFlag := fmt.Sprintf("--namespace=%v", ns)
 
 			By("waiting for gluterfs-csi storageclass")
 			scName := "glusterfs-csi"
