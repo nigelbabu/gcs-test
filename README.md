@@ -10,7 +10,7 @@ repo and live there.
 2. Make sure `kubectl` points to that cluster by doing the following:
 
 ```
-    KUBECONFIG=/home/nigelb/code/gcs/deploy/kubeconfig
+    KUBECONFIG=/path/to/kubeconfig
 ```
 
 3. Clone this repository in the right folder in GOPATH and cd into the e2e
